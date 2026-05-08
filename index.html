@@ -5,31 +5,63 @@
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         <title>Baseball Facility</title>
         <style>
-            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f0f4f8; color: #333; }
-            header { background-color: #003366; color: white; padding: 20px 0; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+            body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #f0f4f8; color: #333; }
+            header { background-color: #003366; color: white; padding: 20px 0; text-align: center; }
             nav { background: #004080; display: flex; justify-content: center; padding: 10px; }
-            nav a { color: white; text-decoration: none; padding: 10px 20px; font-weight: bold; border-radius: 5px; transition: background 0.3s; }
-            nav a:hover { background: #0059b3; }
+            nav button { background: none; border: none; color: white; padding: 10px 20px; font-weight: bold; cursor: pointer; border-radius: 5px; margin: 0 5px; }
+            nav button:hover { background: #0059b3; }
             .container { max-width: 800px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
-            h1 { margin: 0; font-size: 2.5rem; }
-            p { line-height: 1.6; font-size: 1.1rem; }
-            .highlight { color: #cc0000; font-weight: bold; }
+            .tab-content { display: none; }
+            .active { display: block; }
+            .price-list { list-style: none; padding: 0; }
+            .price-list li { padding: 10px; border-bottom: 1px solid #eee; }
+            .calendar { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            .calendar th, .calendar td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+            .calendar th { background-color: #003366; color: white; }
         </style>
     </head>
     <body>
-        <header>
-            <h1>Baseball Facility</h1>
-        </header>
+        <header><h1>Baseball Facility</h1></header>
         <nav>
-            <a href='#'>Home</a>
-            <a href='#'>Schedule</a>
-            <a href='#'>Training</a>
-            <a href='#'>Contact</a>
+            <button onclick="showTab('home')">Home</button>
+            <button onclick="showTab('schedule')">Schedule</button>
+            <button onclick="showTab('training')">Training</button>
+            <button onclick="showTab('contact')">Contact</button>
         </nav>
         <div class='container'>
-            <h2>Welcome to the Diamond</h2>
-            <p>Your premier destination for <span class='highlight'>elite baseball training</span> and facility access.</p>
-            <p>Use the tabs above to explore our schedule and training programs.</p>
+            <div id='home' class='tab-content active'>
+                <h2>Welcome to the Diamond</h2>
+                <p>Your premier destination for elite baseball training.</p>
+            </div>
+            <div id='schedule' class='tab-content'>
+                <h2>Weekly Schedule</h2>
+                <table class='calendar'>
+                    <tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+                    <tr><td>9am-5pm</td><td>9am-5pm</td><td>9am-5pm</td><td>9am-5pm</td><td>9am-8pm</td><td>8am-6pm</td><td>Closed</td></tr>
+                </table>
+            </div>
+            <div id='training' class='tab-content'>
+                <h2>Training Programs</h2>
+                <ul class='price-list'>
+                    <li><b>Private 1-on-1:</b> $85 / hour</li>
+                    <li><b>Small Group (4 players):</b> $45 / player</li>
+                    <li><b>Team Rental:</b> $120 / hour</li>
+                    <li><b>Hitter's Membership:</b> $160 / month</li>
+                </ul>
+            </div>
+            <div id='contact' class='tab-content'>
+                <h2>Contact Us</h2>
+                <p>Questions? Give us a call!</p>
+                <p style='font-size: 1.5rem; color: #cc0000;'><b>(555) 123-4567</b></p>
+                <p>Email: info@baseballfacility.com</p>
+            </div>
         </div>
+        <script>
+            function showTab(tabId) {
+                document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+            }
+        </script>
     </body>
     </html>
+    
